@@ -2,12 +2,11 @@ package com.androiddiplomski.data.storage;
 
 public interface PreferenceRepository {
 
-    void setApiKey(String apyKey);
+    void setUserId(String userId);
 
-    String getApyKey();
+    String getUserId();
 
-    void setUserId(long userId);
+    void setLastRecordId(int recordId);
 
-    long getUserId();
-
+    int getLastRecordId();
 }

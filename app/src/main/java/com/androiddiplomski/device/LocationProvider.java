@@ -1,21 +1,13 @@
 package com.androiddiplomski.device;
 
 
-import android.Manifest;
 import android.annotation.SuppressLint;
-import android.app.Activity;
-import android.app.AlertDialog;
 import android.content.Context;
-import android.content.Intent;
 import android.location.Location;
-import android.location.LocationManager;
 import android.os.Looper;
-import android.provider.Settings;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.androiddiplomski.R;
-import com.androiddiplomski.ui.home.HomeActivity;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationRequest;
@@ -23,13 +15,6 @@ import com.google.android.gms.location.LocationResult;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.location.LocationSettingsRequest;
 import com.google.android.gms.location.SettingsClient;
-import com.karumi.dexter.Dexter;
-import com.karumi.dexter.MultiplePermissionsReport;
-import com.karumi.dexter.PermissionToken;
-import com.karumi.dexter.listener.PermissionRequest;
-import com.karumi.dexter.listener.multi.MultiplePermissionsListener;
-
-import java.util.List;
 
 public class LocationProvider {
 
@@ -37,10 +22,12 @@ public class LocationProvider {
     private LocationCallback locationCallback;
     private FusedLocationProviderClient fusedLocationProviderClient;
 
-    private long UPDATE_INTERVAL = 10 * 1000;  /* 10 secs */
-    private long FASTEST_INTERVAL = 2000; /* 2 sec */
+    private long UPDATE_INTERVAL = 5000;
+    private long FASTEST_INTERVAL = 4000;
 
     private Context context;
+
+    private Location currentLocation;
 
     public LocationProvider(Context context) {
         this.context = context;
@@ -49,10 +36,18 @@ public class LocationProvider {
     }
 
     public void stopLocationUpdates() {
-        if(locationCallback != null) {
+        if (locationCallback != null) {
             fusedLocationProviderClient.removeLocationUpdates(locationCallback);
         }
 
+    }
+
+    public Location getCurrentLocation() {
+        return currentLocation;
+    }
+
+    public void setCurrentLocation(Location currentLocation) {
+        this.currentLocation = currentLocation;
     }
 
     @SuppressLint("MissingPermission")
@@ -81,6 +76,7 @@ public class LocationProvider {
                 Looper.myLooper());
     }
 
+
     public void onLocationChanged(Location location) {
         // New location has now been determined
         String msg = "Updated Location: " +
@@ -90,6 +86,11 @@ public class LocationProvider {
         // You can now create a LatLng Object for use with maps
         //LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
         Log.e("LOCATIOn", location.getLatitude() + " " + location.getLongitude());
+        setCurrentLocation(location);
+    }
+
+    public double calculateDistance(Location oldLocation, Location currentLocation) {
+        return oldLocation.distanceTo(currentLocation);
     }
 
 }

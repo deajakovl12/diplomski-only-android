@@ -69,4 +69,8 @@ dependencies {
 
     implementation 'com.karumi:dexter:4.2.0'
 
+    debugCompile 'im.dino:dbinspector:3.4.1@aar'
+
+    compile 'com.simplify:ink:0.2.3'
+
 }

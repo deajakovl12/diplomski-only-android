@@ -4,9 +4,11 @@ import com.androiddiplomski.application.TaskApplication;
 import com.androiddiplomski.data.api.converter.MovieAPIConverter;
 import com.androiddiplomski.data.service.NetworkService;
 import com.androiddiplomski.data.storage.TemplatePreferences;
+import com.androiddiplomski.data.storage.database.DatabaseHelper;
 import com.androiddiplomski.device.ApplicationInformation;
 import com.androiddiplomski.device.DeviceInformation;
 import com.androiddiplomski.domain.usecase.MovieUseCase;
+import com.androiddiplomski.domain.usecase.RecordUseCase;
 import com.androiddiplomski.injection.module.ApiModule;
 import com.androiddiplomski.injection.module.ApplicationModule;
 import com.androiddiplomski.injection.module.DataModule;
@@ -77,4 +79,9 @@ public interface ApplicationComponent extends ApplicationComponentInjects {
     TemplatePreferences getTemplatePreferences();
 
     NetworkService getNetworkService();
+
+    DatabaseHelper getDatabaseHelper();
+
+    RecordUseCase getRecordUseCase();
+
 }

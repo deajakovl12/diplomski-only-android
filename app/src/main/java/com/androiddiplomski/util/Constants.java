@@ -3,10 +3,11 @@ package com.androiddiplomski.util;
 
 public class Constants {
     public interface ACTION {
-        String MAIN_ACTION = "foi.hr.calorietrek.action.main";
-        String BROADCAST_ACTION = "foi.hr.calorietrek.action.broadcast";
-        String STARTFOREGROUND_ACTION = "foi.hr.calorietrek.action.startforeground";
-        String STOPFOREGROUND_ACTION = "foi.hr.calorietrek.action.stopforeground";
+        String MAIN_ACTION = "diplomski.action.main";
+        String BROADCAST_ACTION = "diplomski.action.broadcast";
+        String BROADCAST_ACTION_LOCATION = "fdiplomski.action.broadcast.location";
+        String STARTFOREGROUND_ACTION = "diplomski.action.startforeground";
+        String STOPFOREGROUND_ACTION = "diplomski.action.stopforeground";
 
     }
 

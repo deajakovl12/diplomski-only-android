@@ -6,12 +6,9 @@ public final class TemplatePreferences implements PreferenceRepository {
 
     private static final String KEY_USER_ID = "key_user_id";
 
-    private static final String KEY_APY_KEY = "key_api_key";
+    private static final String KEY_LAST_RECORD_ID = "key_last_record_id";
 
     private static final String EMPTY_STRING = "";
-
-    private static final long EMPTY_USER_ID = 0;
-
 
     private final SharedPreferences secureDelegate;
 
@@ -25,23 +22,22 @@ public final class TemplatePreferences implements PreferenceRepository {
     }
 
     @Override
-    public void setUserId(final long userId) {
-        secureDelegate.edit().putLong(KEY_USER_ID, userId).apply();
+    public void setUserId(final String userId) {
+        secureDelegate.edit().putString(KEY_USER_ID, userId).apply();
     }
 
     @Override
-    public long getUserId() {
-        return secureDelegate.getLong(KEY_USER_ID, EMPTY_USER_ID);
+    public String getUserId() {
+        return secureDelegate.getString(KEY_USER_ID, EMPTY_STRING);
     }
 
     @Override
-    public void setApiKey(final String apyKey) {
-        secureDelegate.edit().putString(KEY_APY_KEY, apyKey).apply();
+    public void setLastRecordId(int recordId) {
+        secureDelegate.edit().putInt(KEY_LAST_RECORD_ID, recordId).apply();
     }
 
     @Override
-    public String getApyKey() {
-        return secureDelegate.getString(KEY_APY_KEY, EMPTY_STRING);
-
+    public int getLastRecordId() {
+        return secureDelegate.getInt(KEY_LAST_RECORD_ID, 0);
     }
 }
