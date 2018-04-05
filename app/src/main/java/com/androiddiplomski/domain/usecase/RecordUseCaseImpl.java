@@ -34,13 +34,8 @@ public class RecordUseCaseImpl implements RecordUseCase{
     }
 
     @Override
-    public Completable updateFullRecordInfo(double distance, String trainingId) {
-        return null;
-    }
-
-    @Override
-    public Completable addNewRecord(RecordInfo recordInfo) {
-        return Completable.defer(() -> databaseHelper.addNewRecord(recordInfo));
+    public Completable addNewRecord(RecordInfo recordInfo, double distance) {
+        return Completable.defer(() -> databaseHelper.addNewRecord(recordInfo, distance));
     }
 
     @Override

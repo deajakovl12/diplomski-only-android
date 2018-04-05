@@ -68,12 +68,7 @@ public class DatabaseHelperImpl extends SQLiteOpenHelper implements DatabaseHelp
     }
 
     @Override
-    public Completable updateFullRecordInfo(double distance, String trainingId) {
-        return null;
-    }
-
-    @Override
-    public Completable addNewRecord(RecordInfo recordInfo) {
+    public Completable addNewRecord(RecordInfo recordInfo, double distance) {
         return Completable.defer(() -> {
             ContentValues values = new ContentValues();
             SQLiteDatabase db = getReadableDatabase();
@@ -87,6 +82,14 @@ public class DatabaseHelperImpl extends SQLiteOpenHelper implements DatabaseHelp
             values.put(RecordContract.RecordEntry.CURRENT_DATE, recordInfo.currentDate);
 
             db.insert(RecordContract.RecordEntry.TABLE_NAME, null, values);
+
+            values = new ContentValues();
+            values.put(FullRecordContract.FullRecordEntry.DISTANCE_TRAVELLED, distance);
+
+            String selection = FullRecordContract.FullRecordEntry.ID_FULL_RECORD + "=?";
+            String[] selectionArgs = {String.valueOf(preferenceRepository.getLastRecordId())};
+
+            db.update(FullRecordContract.FullRecordEntry.TABLE_NAME, values, selection, selectionArgs);
 
             return Completable.complete();
         });

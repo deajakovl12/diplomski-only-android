@@ -252,9 +252,9 @@ public class HomeActivity extends BaseActivity implements HomeView {
                 textViewSpeed.setText(speed + " km/h");
 
 
+
                 //TODO HERE ALSO CALL UPDATE ON FULL RECORD (DISTANCE)
                 if (location != null) {
-
                     RecordInfo recordInfo = new RecordInfo();
                     recordInfo.currentDate = new SimpleDateFormat("dd.MM.yyyy - HH:mm:ss:SS", Locale.getDefault()).format(new Date());
                     recordInfo.distanceFromLast = distanceLastTwo;
@@ -263,7 +263,7 @@ public class HomeActivity extends BaseActivity implements HomeView {
                     recordInfo.speed = speed;
                     //TODO CALL TO GET SPEED LIMIT FROM A ROAD
                     recordInfo.speedLimit = 0;
-                    presenter.saveRecordToDb(recordInfo);
+                    presenter.saveRecordToDb(recordInfo, distance);
                 }
 
             }

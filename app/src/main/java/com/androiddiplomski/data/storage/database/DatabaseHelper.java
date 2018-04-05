@@ -11,9 +11,7 @@ public interface DatabaseHelper {
 
     Single<FullRecordingInfo> getFullRecordInfo();
 
-    Completable updateFullRecordInfo(double distance, String trainingId);
-
-    Completable addNewRecord(RecordInfo recordInfo);
+    Completable addNewRecord(RecordInfo recordInfo, double distance);
 
     Completable addFullRecord(FullRecordingInfo fullRecordingInfo);
 

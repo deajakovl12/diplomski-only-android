@@ -101,8 +101,8 @@ public final class HomePresenterImpl extends BasePresenter implements HomePresen
     }
 
     @Override
-    public void saveRecordToDb(RecordInfo recordInfo) {
-        addDisposable(recordUseCase.addNewRecord(recordInfo)
+    public void saveRecordToDb(RecordInfo recordInfo, double distance) {
+        addDisposable(recordUseCase.addNewRecord(recordInfo, distance)
                 .subscribeOn(subscribeScheduler)
                 .observeOn(observeScheduler)
                 .subscribe(this::onAddNewRecordSuccess, this::onNewRecordFailure));

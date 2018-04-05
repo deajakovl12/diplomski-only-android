@@ -13,6 +13,5 @@ public interface HomePresenter {
 
     void saveFullRecordToDb(FullRecordingInfo fullRecordingInfo);
 
-    void saveRecordToDb(RecordInfo recordInfo);
-
+    void saveRecordToDb(RecordInfo recordInfo, double distance);
 }
