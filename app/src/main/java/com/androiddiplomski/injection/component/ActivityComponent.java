@@ -8,6 +8,7 @@ import com.androiddiplomski.injection.scope.ForActivity;
 import com.androiddiplomski.ui.base.activities.BaseActivity;
 import com.androiddiplomski.ui.home.HomePresenter;
 import com.androiddiplomski.ui.home.HomeRouter;
+import com.androiddiplomski.ui.login.LoginPresenter;
 
 import dagger.Component;
 
@@ -41,6 +42,8 @@ public interface ActivityComponent extends ActivityComponentActivityInjects, Act
     HomeRouter getHomeRouter();
 
     HomePresenter getHomePresenter();
+
+    LoginPresenter getLoginPresenter();
 
 
 }

@@ -2,8 +2,8 @@ package com.androiddiplomski.data.api;
 
 public interface APIConstants {
 
-    String BASE_URL = "https://www.googleapis.com/geolocation/v1/";
+    String BASE_URL = "https://diplomski-dean.herokuapp.com/";
 
-    String PATH_MOVIES = "geolocate?key=AIzaSyCdMcliEiAAtdecvvxmLtlq8s4r-eYkhNU";
+    String PATH_LOGIN = "users/login";
 
 }

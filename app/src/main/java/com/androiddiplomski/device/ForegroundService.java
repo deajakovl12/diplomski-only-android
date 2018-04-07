@@ -112,9 +112,9 @@ public class ForegroundService extends Service {
     private Runnable updateLocationThread = new Runnable() {
         public void run() {
             oldLocation = currentLocation;
-            if (i == 0) {
+            //if (i == 0) {
                 currentLocation = fusedLocationProvider.getCurrentLocation();
-            } else if (i == 1) {
+            /*} else if (i == 1) {
                 currentLocation = new Location("");
                 currentLocation.setLatitude(45.595882);
                 currentLocation.setLongitude(17.212714);
@@ -134,7 +134,7 @@ public class ForegroundService extends Service {
                 currentLocation = new Location("");
                 currentLocation.setLatitude(45.594587);
                 currentLocation.setLongitude(17.217351);
-            }
+            }*/
             i++;
             if (oldLocation != null && currentLocation != null) {
                 speed = currentLocation.getSpeed();

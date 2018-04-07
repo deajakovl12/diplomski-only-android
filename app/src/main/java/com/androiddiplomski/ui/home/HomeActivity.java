@@ -19,6 +19,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.androiddiplomski.R;
+import com.androiddiplomski.data.api.models.response.LoginApiResponse;
 import com.androiddiplomski.data.api.models.response.MovieApiResponse;
 import com.androiddiplomski.device.ForegroundService;
 import com.androiddiplomski.domain.model.FullRecordingInfo;
@@ -55,6 +56,8 @@ public class HomeActivity extends BaseActivity implements HomeView {
     private static final float MAXSTROKEWIDTH = 3f;
     private static final int COMPRESS_QUALITY = 100;
 
+    private static final String LOGIN_EXTRA = "login_extra";
+
     @Inject
     HomePresenter presenter;
 
@@ -79,6 +82,9 @@ public class HomeActivity extends BaseActivity implements HomeView {
     @BindView(R.id.signature_capture_clear_canvas)
     TextView textViewClearCanvas;
 
+    @BindView(R.id.login_user_name)
+    TextView txtUserFirsNameLastName;
+
 
     BroadcastReceiver broadcastReceiverTimer = null;
     BroadcastReceiver broadcastReceiverLocation = null;
@@ -86,8 +92,8 @@ public class HomeActivity extends BaseActivity implements HomeView {
     boolean started = false;
     private boolean isSignatureAdded = false;
 
-    public static Intent createIntent(final Context context) {
-        return new Intent(context, HomeActivity.class);
+    public static Intent createIntent(final Context context, final LoginApiResponse loginApiResponse) {
+        return new Intent(context, HomeActivity.class).putExtra(LOGIN_EXTRA, loginApiResponse);
     }
 
     @Override
@@ -97,6 +103,9 @@ public class HomeActivity extends BaseActivity implements HomeView {
 
         ButterKnife.bind(this);
 
+        LoginApiResponse loginApiResponse = getIntent().getParcelableExtra(LOGIN_EXTRA);
+
+        txtUserFirsNameLastName.setText(loginApiResponse.id + " " + loginApiResponse.ime + " " +loginApiResponse.prezime + " " + loginApiResponse.adresa + " " +loginApiResponse.username + " " +loginApiResponse.password + " " +loginApiResponse.isAdmin);
         checkLocationPermission();
 
         signatureCanvas.setColor(getResources().getColor(android.R.color.black));
@@ -250,7 +259,6 @@ public class HomeActivity extends BaseActivity implements HomeView {
                 }
                 textViewDistance.setText(distance + " m");
                 textViewSpeed.setText(speed + " km/h");
-
 
 
                 //TODO HERE ALSO CALL UPDATE ON FULL RECORD (DISTANCE)

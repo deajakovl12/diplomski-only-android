@@ -4,10 +4,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <TextView
+        android:id="@+id/login_user_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
     <Button
         android:id="@+id/button_zapocni"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@id/login_user_name"
         android:text="zapocni" />
 
     <TextView

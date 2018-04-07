@@ -7,6 +7,7 @@ import com.androiddiplomski.data.storage.TemplatePreferences;
 import com.androiddiplomski.data.storage.database.DatabaseHelper;
 import com.androiddiplomski.device.ApplicationInformation;
 import com.androiddiplomski.device.DeviceInformation;
+import com.androiddiplomski.domain.usecase.LoginUseCase;
 import com.androiddiplomski.domain.usecase.MovieUseCase;
 import com.androiddiplomski.domain.usecase.RecordUseCase;
 import com.androiddiplomski.injection.module.ApiModule;
@@ -83,5 +84,7 @@ public interface ApplicationComponent extends ApplicationComponentInjects {
     DatabaseHelper getDatabaseHelper();
 
     RecordUseCase getRecordUseCase();
+
+    LoginUseCase getLoginUseCase();
 
 }

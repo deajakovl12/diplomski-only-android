@@ -1,15 +1,13 @@
-package com.androiddiplomski.data.service;
+package com.androiddiplomski.domain.usecase;
 
 
 import com.androiddiplomski.data.api.models.request.LoginRequest;
 import com.androiddiplomski.data.api.models.response.LoginApiResponse;
-import com.androiddiplomski.data.api.models.response.MovieApiResponse;
 
 import io.reactivex.Single;
 
-public interface NetworkService {
-
-    Single<MovieApiResponse> movieInfo();
+public interface LoginUseCase {
 
     Single<LoginApiResponse> loginUser(LoginRequest loginRequest);
+
 }

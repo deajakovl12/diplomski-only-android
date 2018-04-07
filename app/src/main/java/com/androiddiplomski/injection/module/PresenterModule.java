@@ -1,12 +1,15 @@
 package com.androiddiplomski.injection.module;
 
 import com.androiddiplomski.data.api.converter.MovieAPIConverter;
+import com.androiddiplomski.domain.usecase.LoginUseCase;
 import com.androiddiplomski.domain.usecase.MovieUseCase;
 import com.androiddiplomski.domain.usecase.RecordUseCase;
 import com.androiddiplomski.injection.scope.ForActivity;
 import com.androiddiplomski.manager.StringManager;
 import com.androiddiplomski.ui.home.HomePresenter;
 import com.androiddiplomski.ui.home.HomePresenterImpl;
+import com.androiddiplomski.ui.login.LoginPresenter;
+import com.androiddiplomski.ui.login.LoginPresenterImpl;
 
 import javax.inject.Named;
 
@@ -35,6 +38,13 @@ public final class PresenterModule {
                 movieAPIConverter,
                 stringManager,
                 recordUseCase);
+    }
+
+    @ForActivity
+    @Provides
+    LoginPresenter provideLoginPresenter(@Named(SUBSCRIBE_SCHEDULER) Scheduler subscribeScheduler,
+                                         @Named(OBSERVE_SCHEDULER) Scheduler observeScheduler, LoginUseCase loginUseCase) {
+        return new LoginPresenterImpl(subscribeScheduler, observeScheduler, loginUseCase);
     }
 
 }

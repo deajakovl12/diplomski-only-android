@@ -1,18 +1,23 @@
 package com.androiddiplomski.data.service;
 
+import com.androiddiplomski.data.api.models.request.LoginRequest;
+import com.androiddiplomski.data.api.models.response.LoginApiResponse;
 import com.androiddiplomski.data.api.models.response.MovieApiResponse;
 
 import io.reactivex.Single;
+import retrofit2.http.Body;
 import retrofit2.http.POST;
 
-import static com.androiddiplomski.data.api.APIConstants.PATH_MOVIES;
-
+import static com.androiddiplomski.data.api.APIConstants.PATH_LOGIN;
 
 public interface TemplateAPI {
 
 
-    @POST(PATH_MOVIES)
+    @POST("")
     Single<MovieApiResponse> movieInfo();
+
+    @POST(PATH_LOGIN)
+    Single<LoginApiResponse> loginUser(@Body LoginRequest loginRequest);
 
 //    @Headers(CONTENT_TYPE_HEADER)
 //    @POST(PATH_LOGIN)
