@@ -6,7 +6,7 @@ public interface PreferenceRepository {
 
     String getUserId();
 
-    void setLastRecordId(int recordId);
+    void setLastRecordId(String recordId);
 
-    int getLastRecordId();
+    String getLastRecordId();
 }

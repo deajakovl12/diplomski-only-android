@@ -32,12 +32,12 @@ public final class TemplatePreferences implements PreferenceRepository {
     }
 
     @Override
-    public void setLastRecordId(int recordId) {
-        secureDelegate.edit().putInt(KEY_LAST_RECORD_ID, recordId).apply();
+    public void setLastRecordId(String recordId) {
+        secureDelegate.edit().putString(KEY_LAST_RECORD_ID, recordId).apply();
     }
 
     @Override
-    public int getLastRecordId() {
-        return secureDelegate.getInt(KEY_LAST_RECORD_ID, 0);
+    public String getLastRecordId() {
+        return secureDelegate.getString(KEY_LAST_RECORD_ID, EMPTY_STRING);
     }
 }

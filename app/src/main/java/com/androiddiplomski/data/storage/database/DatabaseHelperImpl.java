@@ -56,8 +56,19 @@ public class DatabaseHelperImpl extends SQLiteOpenHelper implements DatabaseHelp
             values.put(FullRecordContract.FullRecordEntry.IMAGE, fullRecordingInfo.image);
             values.put(FullRecordContract.FullRecordEntry.SIGNATURE, fullRecordingInfo.signature);
 
-            db.insert(FullRecordContract.FullRecordEntry.TABLE_NAME, null, values);
-            preferenceRepository.setLastRecordId(preferenceRepository.getLastRecordId() + 1);
+            if (preferenceRepository.getLastRecordId().equals("")) {
+                values.put(FullRecordContract.FullRecordEntry.ID_FULL_RECORD_ID_DATE, "1-" + fullRecordingInfo.dateStart);
+            } else {
+                String array[] = preferenceRepository.getLastRecordId().split("-");
+                int brojZadnjeg = Integer.parseInt(array[0]) + 1;
+                values.put(FullRecordContract.FullRecordEntry.ID_FULL_RECORD_ID_DATE, brojZadnjeg + "-" + fullRecordingInfo.dateStart);
+
+            }
+
+            long rowId = db.insert(FullRecordContract.FullRecordEntry.TABLE_NAME, null, values);
+            if (rowId != -1) {
+                preferenceRepository.setLastRecordId(rowId + "-" + fullRecordingInfo.dateStart);
+            }
             return Completable.complete();
         });
     }

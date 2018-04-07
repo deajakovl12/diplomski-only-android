@@ -5,7 +5,7 @@ public class RecordContract {
     public static final String SQL_CREATE_ENTRIES =
             "CREATE TABLE " + RecordEntry.TABLE_NAME + " (" +
                     RecordEntry.ID_RECORD + " INTEGER PRIMARY KEY AUTOINCREMENT," +
-                    RecordEntry.ID_FULL_RECORD + " INTEGER," +
+                    RecordEntry.ID_FULL_RECORD + " TEXT," +
                     RecordEntry.LAT + " REAL," +
                     RecordEntry.LNG + " REAL, " +
                     RecordEntry.SPEED + " REAL, " +

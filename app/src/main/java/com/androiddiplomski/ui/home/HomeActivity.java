@@ -96,6 +96,8 @@ public class HomeActivity extends BaseActivity implements HomeView {
         return new Intent(context, HomeActivity.class).putExtra(LOGIN_EXTRA, loginApiResponse);
     }
 
+    LoginApiResponse loginApiResponse;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -103,7 +105,7 @@ public class HomeActivity extends BaseActivity implements HomeView {
 
         ButterKnife.bind(this);
 
-        LoginApiResponse loginApiResponse = getIntent().getParcelableExtra(LOGIN_EXTRA);
+        loginApiResponse = getIntent().getParcelableExtra(LOGIN_EXTRA);
 
         txtUserFirsNameLastName.setText(loginApiResponse.id + " " + loginApiResponse.ime + " " +loginApiResponse.prezime + " " + loginApiResponse.adresa + " " +loginApiResponse.username + " " +loginApiResponse.password + " " +loginApiResponse.isAdmin);
         checkLocationPermission();
@@ -196,8 +198,8 @@ public class HomeActivity extends BaseActivity implements HomeView {
                 fullRecordingInfo.distanceTraveled = 0;
                 //TODO add image
                 fullRecordingInfo.image = "";
-                //TODO AFTER LOGIN CHANGE THIS READ IT FROM PREFERENCES
-                fullRecordingInfo.userId = "1";
+
+                fullRecordingInfo.userId = String.valueOf(loginApiResponse.id);
                 fullRecordingInfo.signature = encodedImage;
                 fullRecordingInfo.sentToServer = 1;
 
