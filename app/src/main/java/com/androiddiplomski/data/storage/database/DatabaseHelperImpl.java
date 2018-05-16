@@ -97,7 +97,7 @@ public class DatabaseHelperImpl extends SQLiteOpenHelper implements DatabaseHelp
             values = new ContentValues();
             values.put(FullRecordContract.FullRecordEntry.DISTANCE_TRAVELLED, distance);
 
-            String selection = FullRecordContract.FullRecordEntry.ID_FULL_RECORD + "=?";
+            String selection = FullRecordContract.FullRecordEntry.ID_FULL_RECORD_ID_DATE + "=?";
             String[] selectionArgs = {String.valueOf(preferenceRepository.getLastRecordId())};
 
             db.update(FullRecordContract.FullRecordEntry.TABLE_NAME, values, selection, selectionArgs);
